@@ -10,6 +10,10 @@ def track(id='T1',language='zh',cues=None,media='H1'):
 def signature(db,ids):
     conn=connect(db);rows=[conn.execute('SELECT * FROM subtitle_cue WHERE id=?',(id,)).fetchone() for id in ids]
     return hashlib.sha256(json.dumps([(r['id'],r['version'],r['body']) for r in rows],sort_keys=True).encode()).hexdigest()
+def pass_review(root,db,ids):
+    rows=[{'id':f'P{i}','track':track_id,'track_version':'v1','severity':'none',
+           'closed':True,'cue_index':0} for i,track_id in enumerate(ids)]
+    return operations.second(db,write(root,'pass.json',{'version':'v1','rows':rows}))
 
 def test_track_review_delivery_full_chain(tmp_path):
     result=operations.demo(tmp_path)
@@ -42,6 +46,7 @@ def test_multilanguage_missing_review_open_and_ack_mismatch(tmp_path):
 
 def test_client_ack_hash_must_match_frozen_track(tmp_path):
     db=tmp_path/'db';operations.first(db,write(tmp_path,'tracks.json',{'version':'v1','media_hash':'H1','rows':[track()]}))
+    pass_review(tmp_path,db,['T1'])
     rows=[{'id':'D1','tracks':['T1'],'required_languages':['zh'],'ack_hash':'old'}]
     result=operations.third(db,write(tmp_path,'delivery.json',{'version':'v1','rows':rows}))
     assert result[0]['reason']=='ack_version_mismatch'
@@ -58,6 +63,7 @@ def test_bilingual_timing_drift_blocks_otherwise_complete_delivery(tmp_path):
 
 def test_client_embargo_and_scope_block_complete_language_bundle(tmp_path):
     db=tmp_path/'db';operations.first(db,write(tmp_path,'tracks.json',{'version':'v1','media_hash':'H1','rows':[track()]}))
+    pass_review(tmp_path,db,['T1'])
     rights.register(db,write(tmp_path,'rights.json',{'version':'v1','rows':[{'id':'CLIENT','languages':['zh'],
         'media_hash':'H1','start':'2026-02-01T00:00:00','end':'2026-12-31T00:00:00'}]}))
     rows=[{'id':'D1','tracks':['T1'],'required_languages':['zh'],'client':'CLIENT','at':'2026-01-01T00:00:00','ack_hash':'x'},
@@ -87,8 +93,38 @@ def test_review_issue_must_reference_current_cue(tmp_path):
 
 def test_client_license_cannot_expand_language_rights(tmp_path):
     db=tmp_path/'db';operations.first(db,write(tmp_path,'tracks.json',{'version':'v1','media_hash':'H1','rows':[track(language='en')]}))
+    pass_review(tmp_path,db,['T1'])
     rights.register(db,write(tmp_path,'rights.json',{'version':'v1','rows':[{'id':'CLIENT','languages':['zh'],
         'media_hash':'H1','start':'2026-01-01T00:00:00','end':'2026-12-31T00:00:00'}]}))
     result=operations.third(db,write(tmp_path,'delivery.json',{'version':'v1','rows':[
         {'id':'D1','tracks':['T1'],'required_languages':['en'],'client':'CLIENT','at':'2026-02-01T00:00:00','ack_hash':'x'}]}))
     assert result[0]['reason']=='rights_scope_mismatch'
+
+def test_delivery_requires_review_even_when_ack_matches(tmp_path):
+    db=tmp_path/'db';operations.first(db,write(tmp_path,'tracks.json',{'version':'v1','media_hash':'H1','rows':[track()]}))
+    result=operations.third(db,write(tmp_path,'delivery.json',{'version':'v1','rows':[
+        {'id':'D1','tracks':['T1'],'required_languages':['zh'],'ack_hash':signature(db,['T1'])}]}))
+    assert result[0]['reason']=='review_missing'
+
+def test_multilanguage_bundle_requires_all_tracks_connected(tmp_path):
+    db=tmp_path/'db';tracks=[track(),track('T2','en'),track('T3','fr')]
+    operations.first(db,write(tmp_path,'tracks.json',{'version':'v1','media_hash':'H1','rows':tracks}))
+    pass_review(tmp_path,db,['T1','T2','T3'])
+    alignment.evaluate(db,write(tmp_path,'align.json',{'version':'v1','rows':[
+        {'id':'A1','left':'T1','right':'T2','max_total_shift':0.5}]}))
+    bundle={'id':'D1','tracks':['T1','T2','T3'],'required_languages':['zh','en','fr'],
+            'ack_hash':signature(db,['T1','T2','T3'])}
+    assert operations.third(db,write(tmp_path,'delivery.json',{'version':'v1','rows':[bundle]}))[0]['reason']=='alignment_incomplete'
+
+def test_review_revision_can_resolve_open_issue_and_restore_delivery(tmp_path):
+    db=tmp_path/'db';operations.first(db,write(tmp_path,'tracks.json',{'version':'v1','media_hash':'H1','rows':[track()]}))
+    operations.second(db,write(tmp_path,'open.json',{'version':'v1','rows':[
+        {'id':'I1','track':'T1','track_version':'v1','severity':'major','closed':False,'cue_index':0}]}))
+    bundle={'id':'D1','tracks':['T1'],'required_languages':['zh'],'ack_hash':signature(db,['T1'])}
+    delivery=write(tmp_path,'delivery.json',{'version':'v1','rows':[bundle]})
+    assert operations.third(db,delivery)[0]['reason']=='review_open'
+    assert operations.second(db,write(tmp_path,'revision.json',{'version':'v1','rows':[
+        {'id':'I2','track':'T1','track_version':'v1','severity':'major','closed':True,
+         'cue_index':0,'supersedes':'I1'}]}))[0]['status']=='通过'
+    assert operations.third(db,delivery)[0]['status']=='已交付'
+    assert connect(db).execute("SELECT status FROM review_issue WHERE id='I1'").fetchone()[0]=='已解决'

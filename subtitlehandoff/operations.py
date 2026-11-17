@@ -37,15 +37,24 @@ def second(path,file):
     try:
         with db:
             for row in payload.get('rows',[]):
-                key=str(row['id']);track=db.execute('SELECT * FROM subtitle_cue WHERE id=?',(str(row['track']),)).fetchone()
+                key=str(row['id']);old=db.execute('SELECT * FROM review_issue WHERE id=?',(key,)).fetchone()
+                if old:
+                    if old['body']!=json.dumps(row,sort_keys=True,ensure_ascii=False):raise ValueError('review_identity_conflict')
+                    results.append(decide(db,'审校修订',key,old['status'],old['reason'],source));continue
+                track=db.execute('SELECT * FROM subtitle_cue WHERE id=?',(str(row['track']),)).fetchone()
+                superseded=db.execute('SELECT * FROM review_issue WHERE id=?',(str(row.get('supersedes')),)).fetchone() if row.get('supersedes') else None
                 if not track or track['status']!='可审校':status,reason='退审','track_not_valid'
                 elif row.get('track_version')!=track['version']:status,reason='退审','revision_stale'
                 elif row.get('severity')=='major' and not row.get('closed'):status,reason='退审','major_issue_open'
-                elif row.get('cue_index',0)>=len(json.loads(track['body'])['cues']):status,reason='退审','cue_not_found'
+                elif not isinstance(row.get('cue_index'),int) or not 0<=row['cue_index']<len(json.loads(track['body'])['cues']):status,reason='退审','cue_not_found'
+                elif row.get('supersedes') and (not superseded or json.loads(superseded['body'])['track']!=row['track'] or superseded['status']!='退审'):
+                    status,reason='退审','invalid_supersession'
                 else:status,reason='通过','issue_resolved'
                 save(db,'review_issue',key,source,payload['version'],row,status,reason)
                 save(db,'revision',f'revision:{key}',source,payload['version'],
                      {'track':row['track'],'version':row.get('track_version'),'closed':row.get('closed',False)},status,reason)
+                if status=='通过' and superseded:
+                    db.execute("UPDATE review_issue SET status='已解决',reason='superseded_by_current_review' WHERE id=?",(superseded['id'],))
                 results.append(decide(db,'审校修订',key,status,reason,source))
         return results
     finally:db.close()
@@ -65,11 +74,16 @@ def third(path,file):
                 unresolved={json.loads(x['body'])['track'] for x in db.execute("SELECT body FROM review_issue WHERE status='退审'")}
                 alignments=[x for x in db.execute('SELECT * FROM alignment_policy') if
                             set((json.loads(x['body'])['left'],json.loads(x['body'])['right'])).issubset(set(row.get('tracks',[])))]
+                passed={json.loads(x['body'])['track'] for x in db.execute("SELECT body FROM review_issue WHERE status='通过'")}
                 signature=hashlib.sha256(json.dumps([(t['id'],t['version'],t['body']) for t in tracks],sort_keys=True).encode()).hexdigest()
-                if not set(row['required_languages']).issubset(languages):status,reason='待交付','language_missing'
+                if len(tracks)!=len(row.get('tracks',[])):status,reason='待交付','track_missing'
+                elif not set(row['required_languages']).issubset(languages):status,reason='待交付','language_missing'
                 elif any(t['id'] in unresolved for t in tracks):status,reason='退审','review_open'
                 elif len(row['required_languages'])>1 and (not alignments or any(x['status']!='已对齐' for x in alignments)):
                     status,reason='待修','alignment_unresolved'
+                elif len(row['required_languages'])>1 and not _connected_alignment(row['tracks'],alignments):
+                    status,reason='待修','alignment_incomplete'
+                elif any(t['id'] not in passed for t in tracks):status,reason='退审','review_missing'
                 elif row.get('client') or db.execute('SELECT 1 FROM client_contract LIMIT 1').fetchone():
                     from .rights import check
                     rights_status,rights_reason=check(db,row.get('client'),languages,
@@ -88,12 +102,26 @@ def third(path,file):
     finally:db.close()
 
 
+def _connected_alignment(track_ids,alignments):
+    required=set(str(x) for x in track_ids)
+    if not required:return False
+    seen={next(iter(required))}
+    edges=[json.loads(x['body']) for x in alignments if x['status']=='已对齐']
+    while True:
+        before=len(seen)
+        for edge in edges:
+            if edge['left'] in seen:seen.add(edge['right'])
+            if edge['right'] in seen:seen.add(edge['left'])
+        if len(seen)==before:return required.issubset(seen)
+
+
 def demo(root):
     db=root/'ledger.db';track={'id':'T1','media_hash':'H1','language':'zh','duration':60,
                                'cues':[{'start':1,'end':3,'text':'你好'}]}
     other=dict(track,id='T2',language='en',cues=[{'start':1,'end':3,'text':'Hello'}])
     a={'version':'v1','media_hash':'H1','rows':[track,other]}
-    b={'version':'v1','rows':[{'id':'I1','track':'T1','track_version':'v1','severity':'major','closed':True,'cue_index':0}]}
+    b={'version':'v1','rows':[{'id':'I1','track':'T1','track_version':'v1','severity':'major','closed':True,'cue_index':0},
+                              {'id':'I2','track':'T2','track_version':'v1','severity':'none','closed':True,'cue_index':0}]}
     files=[]
     for i,data in enumerate((a,b)):
         p=root/f'export{i}.json';p.write_text(json.dumps(data),encoding='utf-8');files.append(p)
