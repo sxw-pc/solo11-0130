@@ -1,0 +1,46 @@
+{
+  "version": "pkgs-invalid-1",
+  "rows": [
+    {
+      "id": "station-test:pkg-ocr2-oldabi",
+      "station": "station-test",
+      "name": "OCR",
+      "release": "2",
+      "abi": "abi-8",
+      "requires": {
+        "runtime": "2"
+      },
+      "conflicts": [],
+      "payload_path": "offline/x.zip",
+      "payload_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "digest": "795ad5dbdb69f5c85537ecdefa571257f25b8a87d4119a1746ab896edc3da5a1",
+      "signature": "00244f7803271c2101208891aa84c1f6c71cadb07131687a0465265d495b8bdd"
+    },
+    {
+      "id": "station-test:pkg-exp2-tampered",
+      "station": "station-test",
+      "name": "export",
+      "release": "2",
+      "abi": "abi-9",
+      "requires": {
+        "runtime": "2"
+      },
+      "conflicts": [],
+      "payload_path": "offline/y.zip",
+      "payload_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "digest": "b33c394a1b831c24d2a6380bae0c648bf0f3f9542c8ba7578320c7e77db03974",
+      "signature": "4364ad0e426e22ae1f906ec0bc1c9c69f10e5be87d08c2a50896e4fa44697ab5"
+    },
+    {
+      "id": "station-test:pkg-rt2-unsigned",
+      "station": "station-test",
+      "name": "runtime",
+      "release": "2",
+      "abi": "abi-9",
+      "requires": {},
+      "conflicts": [],
+      "payload_path": "offline/z.zip",
+      "payload_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
+}

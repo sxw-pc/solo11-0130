@@ -1,0 +1,48 @@
+{
+  "version": "pkgs-2026.1",
+  "rows": [
+    {
+      "id": "station-test:pkg-ocr2",
+      "station": "station-test",
+      "name": "OCR",
+      "release": "2",
+      "abi": "abi-9",
+      "requires": {
+        "runtime": "2"
+      },
+      "conflicts": [],
+      "payload_path": "offline/station-test/ocr-2.zip",
+      "payload_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "digest": "6eb9f284ec84135445dedf7ec1b096a5b5c80f84e0df4253d08c6fc21405851c",
+      "signature": "ac2faea1c6af7a8d5c4bad27c5438c74577228c2887ca72c667e6dd706223dd7"
+    },
+    {
+      "id": "station-test:pkg-exp2",
+      "station": "station-test",
+      "name": "export",
+      "release": "2",
+      "abi": "abi-9",
+      "requires": {
+        "runtime": "2"
+      },
+      "conflicts": [],
+      "payload_path": "offline/station-test/export-2.zip",
+      "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "digest": "5effc30bfefa880ce767935e1f700e01f46456a9b3b9a9da285dc623945805bc",
+      "signature": "6b8f2d84867cee5feab888cb8db3fbbdff56128471d124d7a9247f7d48062dee"
+    },
+    {
+      "id": "station-test:pkg-rt2",
+      "station": "station-test",
+      "name": "runtime",
+      "release": "2",
+      "abi": "abi-9",
+      "requires": {},
+      "conflicts": [],
+      "payload_path": "offline/station-test/runtime-2.zip",
+      "payload_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "digest": "82c044febafe6a24b5157a7c96ef0e420a23b30de5b31b83c58f404dbfe4b7f7",
+      "signature": "5811a9c005a33e6356d18cdaf41646f07d8429ef146010a95e89ba281180dd3d"
+    }
+  ]
+}

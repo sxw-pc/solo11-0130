@@ -1,0 +1,23 @@
+{
+  "version": "proj-legacy-1",
+  "rows": [
+    {
+      "id": "P-OLD",
+      "name": "旧字幕工程",
+      "required_plugins": [
+        {
+          "name": "export",
+          "spec": "==1",
+          "optional": false,
+          "feature": "旧导出管线"
+        },
+        {
+          "name": "runtime",
+          "spec": "==1",
+          "optional": false,
+          "feature": "运行库"
+        }
+      ]
+    }
+  ]
+}

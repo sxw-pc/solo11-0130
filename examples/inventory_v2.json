@@ -1,0 +1,47 @@
+{
+  "version": "inv-2026.1",
+  "rows": [
+    {
+      "id": "I-OCR-1",
+      "name": "OCR",
+      "release": "1",
+      "abi": "abi-9",
+      "requires": {
+        "runtime": "1"
+      },
+      "conflicts": [],
+      "active": true
+    },
+    {
+      "id": "I-EXP-1",
+      "name": "export",
+      "release": "1",
+      "abi": "abi-9",
+      "requires": {
+        "runtime": "1"
+      },
+      "conflicts": [],
+      "active": true
+    },
+    {
+      "id": "I-RT-1",
+      "name": "runtime",
+      "release": "1",
+      "abi": "abi-9",
+      "requires": {},
+      "conflicts": [],
+      "active": true
+    },
+    {
+      "id": "I-EXP-1-DUP",
+      "name": "export",
+      "release": "1.0.1",
+      "abi": "abi-9",
+      "requires": {
+        "runtime": "1"
+      },
+      "conflicts": [],
+      "active": true
+    }
+  ]
+}

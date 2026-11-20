@@ -1,0 +1,12 @@
+{
+  "version": "station-1",
+  "rows": [
+    {
+      "id": "station-air",
+      "purpose": "播出",
+      "editor_abi": "abi-9",
+      "signing_key": "studio-offline-key-air-2026",
+      "note": "环境冻结，不允许安装或升级"
+    }
+  ]
+}

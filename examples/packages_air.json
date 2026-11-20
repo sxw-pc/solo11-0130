@@ -1,0 +1,48 @@
+{
+  "version": "pkgs-2026.1",
+  "rows": [
+    {
+      "id": "station-air:pkg-ocr2",
+      "station": "station-air",
+      "name": "OCR",
+      "release": "2",
+      "abi": "abi-9",
+      "requires": {
+        "runtime": "2"
+      },
+      "conflicts": [],
+      "payload_path": "offline/station-air/ocr-2.zip",
+      "payload_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "digest": "cc22d18ab41d865543012a6d8b78953befc95e3cfb6a986652ca7981e642bc1b",
+      "signature": "1097c86780e1b821a7550e0159b87ff812de22780a2369ed105a9253a8a1e683"
+    },
+    {
+      "id": "station-air:pkg-exp2",
+      "station": "station-air",
+      "name": "export",
+      "release": "2",
+      "abi": "abi-9",
+      "requires": {
+        "runtime": "2"
+      },
+      "conflicts": [],
+      "payload_path": "offline/station-air/export-2.zip",
+      "payload_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "digest": "69d6c24f561f41fede58a5718fb6c0a8badcc3642acd6a7c403c884e421e4e28",
+      "signature": "51caef924973c7fe0f771e59c0ef94f31634ba3ca61d42cc65ea02b879ab91f9"
+    },
+    {
+      "id": "station-air:pkg-rt2",
+      "station": "station-air",
+      "name": "runtime",
+      "release": "2",
+      "abi": "abi-9",
+      "requires": {},
+      "conflicts": [],
+      "payload_path": "offline/station-air/runtime-2.zip",
+      "payload_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "digest": "539a1bd7544c7bed5aed9656b181bd599001c3ab09f7f1023b4b704d9fc1961f",
+      "signature": "381c2f020c1ada966e2c2816e469761d20f2e5021b2fd1c60986515729729e85"
+    }
+  ]
+}

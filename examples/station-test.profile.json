@@ -1,0 +1,12 @@
+{
+  "version": "station-1",
+  "rows": [
+    {
+      "id": "station-test",
+      "purpose": "测试",
+      "editor_abi": "abi-9",
+      "signing_key": "studio-offline-key-test-2026",
+      "note": "可用本地签发包更新，失败回滚"
+    }
+  ]
+}
