@@ -10,3 +10,8 @@ node_modules/
 .benchmarks/
 .env
 dist/
+examples/cache_prune/cache/
+examples/cache_prune/retired/
+examples/cache_prune/engineering-archive/
+examples/cache_prune/*.db
+examples/cache_prune/report.json

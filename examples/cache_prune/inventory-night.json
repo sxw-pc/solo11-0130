@@ -1,0 +1,85 @@
+{
+  "version": "v2",
+  "cache_root": "/workspace/examples/cache_prune/cache",
+  "rows": [
+    {
+      "id": "P",
+      "path": "decode/parent.decode",
+      "sha256": "e7d038df4ab15b6969fafb879cb3e4a4507cbaaca2f32c9d3fdb695b47dab7b7",
+      "size_mb": 20,
+      "last_used": "2026-01-01T08:00:00",
+      "depends_on": [],
+      "gen_cost_seconds": 60
+    },
+    {
+      "id": "WA",
+      "path": "wave/scene-A.wave",
+      "sha256": "3b24d16ac398b739cb59938ea440191d0fe4f62de2293967154fab6871bc675e",
+      "size_mb": 20,
+      "last_used": "2026-01-01T08:00:00",
+      "depends_on": [
+        "P"
+      ],
+      "gen_cost_seconds": 90
+    },
+    {
+      "id": "CA",
+      "path": "composite/scene-A.comp",
+      "sha256": "aed8b570fa4974926f9df0856d5c8dbb798073f4b260c9ff0e037d3b59df3efc",
+      "size_mb": 20,
+      "last_used": "2026-01-01T08:00:00",
+      "depends_on": [
+        "P",
+        "WA"
+      ],
+      "gen_cost_seconds": 90
+    },
+    {
+      "id": "WB",
+      "path": "wave/scene-B.wave",
+      "sha256": "8de421588dbc19536bff4d2d917d9094c49dbbe306c7d5361c6a3fd69fa2b116",
+      "size_mb": 20,
+      "last_used": "2026-01-01T08:00:00",
+      "depends_on": [
+        "P"
+      ],
+      "gen_cost_seconds": 90
+    },
+    {
+      "id": "CB",
+      "path": "composite/scene-B.comp",
+      "sha256": "a9304d4790a03d5fce1af6e4887d1578da72d2568f92df01d40483dc903f7aab",
+      "size_mb": 20,
+      "last_used": "2026-01-01T08:00:00",
+      "depends_on": [
+        "P",
+        "WB"
+      ],
+      "gen_cost_seconds": 90
+    },
+    {
+      "id": "T1",
+      "path": "thumbs/frame-001.thumb",
+      "sha256": "9f029e5d3aa84fc03376123bc6f16c9c51069d51988590a9c7f5c07d824369d6",
+      "size_mb": 0,
+      "last_used": "2026-01-01T08:00:00",
+      "physical_id": "phys:shared-thumb",
+      "depends_on": [],
+      "gen_cost_seconds": 10
+    },
+    {
+      "id": "T2",
+      "path": "thumbs/frame-001-copy.thumb",
+      "sha256": "9f029e5d3aa84fc03376123bc6f16c9c51069d51988590a9c7f5c07d824369d6",
+      "size_mb": 0,
+      "last_used": "2026-01-01T08:00:00",
+      "physical_id": "phys:shared-thumb",
+      "depends_on": [],
+      "gen_cost_seconds": 10
+    }
+  ],
+  "references": [],
+  "outside_cache": [
+    "/workspace/examples/cache_prune/engineering-archive/durable/SCENE-A.eng"
+  ]
+}
