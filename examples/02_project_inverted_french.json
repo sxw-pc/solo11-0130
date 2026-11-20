@@ -1,0 +1,55 @@
+{
+  "version": "v1",
+  "media_hash": "MEDIA_INVERT",
+  "shots": [
+    {"id": "S1", "start": 0.0, "end": 60.0}
+  ],
+  "paragraphs": [
+    {"id": "U1", "shot": "S1"},
+    {"id": "U2", "shot": "S1"}
+  ],
+  "rows": [
+    {
+      "id": "ZH1",
+      "media_hash": "MEDIA_INVERT",
+      "language": "zh",
+      "duration": 60,
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 6.0,
+          "text": "你好 世界",
+          "paragraphs": [
+            {"id": "U1", "start": 1.0, "end": 3.5},
+            {"id": "U2", "start": 3.5, "end": 6.0}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN1",
+      "media_hash": "MEDIA_INVERT",
+      "language": "en",
+      "duration": 60,
+      "cues": [
+        {"start": 1.0, "end": 3.5, "text": "Hello",
+         "paragraphs": [{"id": "U1", "start": 1.0, "end": 3.5}]},
+        {"start": 3.5, "end": 6.0, "text": "world",
+         "paragraphs": [{"id": "U2", "start": 3.5, "end": 6.0}]}
+      ]
+    },
+    {
+      "id": "FR_BAD",
+      "media_hash": "MEDIA_INVERT",
+      "language": "fr",
+      "duration": 60,
+      "cues": [
+        {"start": 1.05, "end": 3.5, "text": "monde",
+         "paragraphs": [{"id": "U2", "start": 1.05, "end": 3.5}]},
+        {"start": 3.5, "end": 6.0, "text": "Bonjour",
+         "paragraphs": [{"id": "U1", "start": 3.5, "end": 6.0}]}
+      ]
+    }
+  ],
+  "_workflow_note": "Evaluate with max_total_shift=6.0 so every local cue-level timing check passes; delivery must still refuse both services because the French paragraph IDs walk U2 then U1 and no common order-preserving mapping exists."
+}

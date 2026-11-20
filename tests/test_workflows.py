@@ -19,7 +19,7 @@ def test_track_review_delivery_full_chain(tmp_path):
     result=operations.demo(tmp_path)
     assert [x[0]['status'] for x in result]==['可审校','通过','已交付']
     data=json.loads(report.build(tmp_path/'ledger.db',tmp_path/'report.json').read_text(encoding='utf-8'))
-    assert len(data['sources'])==5 and all(x['verified'] for x in data['sources'])
+    assert len(data['sources'])==6 and all(x['verified'] for x in data['sources'])
 
 def test_media_version_overlap_and_range(tmp_path):
     db=tmp_path/'db';rows=[track('T1'),track('T2',media='old'),
@@ -106,7 +106,7 @@ def test_delivery_requires_review_even_when_ack_matches(tmp_path):
         {'id':'D1','tracks':['T1'],'required_languages':['zh'],'ack_hash':signature(db,['T1'])}]}))
     assert result[0]['reason']=='review_missing'
 
-def test_multilanguage_bundle_requires_all_tracks_connected(tmp_path):
+def test_multilanguage_bundle_requires_common_paragraph_mapping_not_graph_connectivity(tmp_path):
     db=tmp_path/'db';tracks=[track(),track('T2','en'),track('T3','fr')]
     operations.first(db,write(tmp_path,'tracks.json',{'version':'v1','media_hash':'H1','rows':tracks}))
     pass_review(tmp_path,db,['T1','T2','T3'])
@@ -114,7 +114,10 @@ def test_multilanguage_bundle_requires_all_tracks_connected(tmp_path):
         {'id':'A1','left':'T1','right':'T2','max_total_shift':0.5}]}))
     bundle={'id':'D1','tracks':['T1','T2','T3'],'required_languages':['zh','en','fr'],
             'ack_hash':signature(db,['T1','T2','T3'])}
-    assert operations.third(db,write(tmp_path,'delivery.json',{'version':'v1','rows':[bundle]}))[0]['reason']=='alignment_incomplete'
+    result=operations.third(db,write(tmp_path,'delivery.json',{'version':'v1','rows':[bundle]}))
+    # The T1-T2 edge connects nothing to T3; and even a connected graph of
+    # timing checks would not prove one shared paragraph segmentation.
+    assert result[0]['reason']=='alignment_unresolved'
 
 def test_review_revision_can_resolve_open_issue_and_restore_delivery(tmp_path):
     db=tmp_path/'db';operations.first(db,write(tmp_path,'tracks.json',{'version':'v1','media_hash':'H1','rows':[track()]}))

@@ -1,0 +1,19 @@
+{
+  "version": "v1",
+  "rows": [
+    {
+      "id": "PKG_STANDARD",
+      "tracks": ["ZH1", "EN1", "FR1"],
+      "required_languages": ["zh", "en", "fr"],
+      "service": "SVC_STANDARD",
+      "ack_hash": "filled-in by the workflow script; see README.md"
+    },
+    {
+      "id": "PKG_ACCESSIBLE",
+      "tracks": ["ZH1", "EN1", "FR1"],
+      "required_languages": ["zh", "en", "fr"],
+      "service": "SVC_ACCESSIBLE",
+      "ack_hash": "filled-in by the workflow script; see README.md"
+    }
+  ]
+}

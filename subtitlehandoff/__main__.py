@@ -1,7 +1,7 @@
 import argparse,json,tempfile
 from pathlib import Path
 from . import operations,report,alignment,rights
-COMMANDS=['track-import', 'review-decide', 'delivery-evaluate','alignment-evaluate','rights-register','rights-revoke']
+COMMANDS=['track-import', 'review-decide', 'delivery-evaluate','alignment-evaluate','rights-register','rights-revoke','service-register']
 def main():
     parser=argparse.ArgumentParser()
     sub=parser.add_subparsers(dest='command',required=True)
@@ -18,6 +18,6 @@ def main():
     elif x.command=='report':print(report.build(x.db,x.out))
     else:
         fn=[operations.first,operations.second,operations.third,alignment.evaluate,rights.register,
-            rights.revoke][COMMANDS.index(x.command)]
+            rights.revoke,operations.service_register][COMMANDS.index(x.command)]
         print(json.dumps(fn(x.db,x.file),ensure_ascii=False))
 if __name__=='__main__':main()

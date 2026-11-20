@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "rows": [
+    {"id": "SVC_STANDARD", "name": "standard_subtitle_service",
+     "sentence_cue_required": false,
+     "note": "普通字幕服务：允许镜头内连续段落合句"},
+    {"id": "SVC_ACCESSIBLE", "name": "sentence_by_sentence_accessibility",
+     "sentence_cue_required": true,
+     "note": "无障碍逐句提示服务：每个翻译段落必须有独立同步提示，禁止临时改口径"}
+  ]
+}

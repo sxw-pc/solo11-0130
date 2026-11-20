@@ -1,0 +1,8 @@
+{
+  "version": "v1",
+  "rows": [
+    {"id": "A_ZH_EN", "left": "ZH1", "right": "EN1", "max_total_shift": 0.6},
+    {"id": "A_ZH_FR", "left": "ZH1", "right": "FR1", "max_total_shift": 0.6},
+    {"id": "A_EN_FR", "left": "EN1", "right": "FR1", "max_total_shift": 0.6}
+  ]
+}

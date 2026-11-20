@@ -1,0 +1,42 @@
+{
+  "version": "v1",
+  "media_hash": "MEDIA_REPEAT",
+  "shots": [
+    {"id": "S1", "start": 0.0, "end": 60.0}
+  ],
+  "paragraphs": [
+    {"id": "U1", "shot": "S1"},
+    {"id": "U2", "shot": "S1"},
+    {"id": "U3", "shot": "S1"}
+  ],
+  "rows": [
+    {
+      "id": "ZH1",
+      "media_hash": "MEDIA_REPEAT",
+      "language": "zh",
+      "duration": 60,
+      "cues": [
+        {"start": 1.0, "end": 3.0, "text": "好的",
+         "paragraphs": [{"id": "U1", "start": 1.0, "end": 3.0}]},
+        {"start": 3.0, "end": 5.0, "text": "中间句",
+         "paragraphs": [{"id": "U2", "start": 3.0, "end": 5.0}]},
+        {"start": 5.0, "end": 7.0, "text": "好的",
+         "paragraphs": [{"id": "U3", "start": 5.0, "end": 7.0}]}
+      ]
+    },
+    {
+      "id": "EN1",
+      "media_hash": "MEDIA_REPEAT",
+      "language": "en",
+      "duration": 60,
+      "cues": [
+        {"start": 1.0, "end": 3.0, "text": "OK",
+         "paragraphs": [{"id": "U1", "start": 1.0, "end": 3.0}]},
+        {"start": 3.0, "end": 5.0, "text": "middle line",
+         "paragraphs": [{"id": "U2", "start": 3.0, "end": 5.0}]},
+        {"start": 5.0, "end": 7.0, "text": "OK",
+         "paragraphs": [{"id": "U3", "start": 5.0, "end": 7.0}]}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "version": "v1",
+  "media_hash": "MEDIA_U",
+  "shots": [
+    {"id": "S1", "start": 0.0, "end": 60.0}
+  ],
+  "paragraphs": [
+    {"id": "U1", "shot": "S1"},
+    {"id": "U2", "shot": "S1"}
+  ],
+  "rows": [
+    {
+      "id": "ZH1",
+      "media_hash": "MEDIA_U",
+      "language": "zh",
+      "duration": 60,
+      "cues": [
+        {
+          "start": 1.0,
+          "end": 6.0,
+          "text": "你好 世界",
+          "paragraphs": [
+            {"id": "U1", "start": 1.0, "end": 3.5},
+            {"id": "U2", "start": 3.5, "end": 6.0}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EN1",
+      "media_hash": "MEDIA_U",
+      "language": "en",
+      "duration": 60,
+      "cues": [
+        {"start": 1.0, "end": 3.5, "text": "Hello",
+         "paragraphs": [{"id": "U1", "start": 1.0, "end": 3.5}]},
+        {"start": 3.5, "end": 6.0, "text": "world",
+         "paragraphs": [{"id": "U2", "start": 3.5, "end": 6.0}]}
+      ]
+    },
+    {
+      "id": "FR1",
+      "media_hash": "MEDIA_U",
+      "language": "fr",
+      "duration": 60,
+      "cues": [
+        {"start": 1.05, "end": 3.5, "text": "Bonjour",
+         "paragraphs": [{"id": "U1", "start": 1.05, "end": 3.5}]},
+        {"start": 3.5, "end": 6.0, "text": "monde",
+         "paragraphs": [{"id": "U2", "start": 3.5, "end": 6.0}]}
+      ]
+    }
+  ]
+}

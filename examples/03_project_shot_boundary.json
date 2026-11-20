@@ -1,0 +1,43 @@
+{
+  "version": "v1",
+  "media_hash": "MEDIA_SHOT",
+  "shots": [
+    {"id": "S1", "start": 0.0, "end": 10.0},
+    {"id": "S2", "start": 10.0, "end": 30.0}
+  ],
+  "paragraphs": [
+    {"id": "U1", "shot": "S1"},
+    {"id": "U2", "shot": "S2"}
+  ],
+  "rows": [
+    {
+      "id": "ZH_CUT",
+      "media_hash": "MEDIA_SHOT",
+      "language": "zh",
+      "duration": 30,
+      "cues": [
+        {"start": 2.0, "end": 10.0, "text": "第一镜头句",
+         "paragraphs": [{"id": "U1", "start": 2.0, "end": 10.0}]},
+        {"start": 10.0, "end": 14.0, "text": "第二镜头句",
+         "paragraphs": [{"id": "U2", "start": 10.0, "end": 14.0}]}
+      ]
+    },
+    {
+      "id": "ZH_MERGED_GAP",
+      "media_hash": "MEDIA_SHOT",
+      "language": "zh",
+      "duration": 30,
+      "cues": [
+        {
+          "start": 2.0,
+          "end": 14.0,
+          "text": "跨镜头合并，未给第二镜头逐句证据",
+          "paragraphs": [
+            {"id": "U1", "start": 2.0, "end": 9.0},
+            {"id": "U2", "start": 9.0, "end": 10.0}
+          ]
+        }
+      ]
+    }
+  ]
+}
