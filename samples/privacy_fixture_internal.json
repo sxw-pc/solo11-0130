@@ -1,0 +1,16 @@
+{
+  "version": "v1",
+  "project": "proj-alpha",
+  "audience": "internal",
+  "rows": [
+    {"id": "I-C1", "source": "C1"},
+    {"id": "I-C2", "source": "C2"},
+    {"id": "I-C3", "source": "C3"},
+    {"id": "I-C4", "source": "C4"},
+    {"id": "I-C5", "source": "C5"},
+    {"id": "I-C6", "source": "C6"},
+    {"id": "I-C7", "source": "C7"},
+    {"id": "I-C8", "source": "C8"},
+    {"id": "I-C9", "source": "C9"}
+  ]
+}

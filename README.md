@@ -6,4 +6,4 @@
 
 运行：`python -m pip install . --no-deps --no-build-isolation`，`python -m subtitlehandoff demo`，`python -m subtitlehandoff --help`，`python -m pytest -q`。所有演示和测试使用虚构本地文件，不访问网络。
 
-增强素材提供 `privacy-scan` 和 `privacy-fixture`，从离线合成字幕文本识别简单邮箱并生成遮盖样例。入口使用 `--db ledger.db export.json`，可运行样例见 `tests/test_privacy.py`。
+增强素材提供 `privacy-scan`、`privacy-fixture`、`privacy-review`。扫描理解本地编辑器导出的块顺序、场景边界与说话人代号，跨相邻块还原被换行拆开的邮箱、姓名与艺名；姓名只在声明场景内绑定，同名不同场景不合并；别名仅在别名表证据完整时绑定，否则列 `待核`，不按时间猜身份。外发样例在块数、顺序与起止时刻不变的前提下，对预先声明的准标识字段做有限层级泛化或整字段抑制，用集合划分动态规划找到每组至少三名不同主体、且满足可读性约束的全局最少信息损失方案（非逐字段贪心），无法满足时给出最小冲突字段并整体 `待核`。内审保留稳定假名与具体场景信息，外发假名按项目与供应商隔离。`report` 回读泄漏检查与信息损失原因，`privacy-review` 仅在本地向复核员回读原片段与脱敏片段。字段与样例见 `docs/privacy-fields.md`、`samples/`。

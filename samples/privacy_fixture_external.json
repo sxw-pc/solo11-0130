@@ -1,0 +1,17 @@
+{
+  "version": "v1",
+  "project": "proj-alpha",
+  "audience": "external",
+  "vendor": "vendor-a",
+  "rows": [
+    {"id": "X-C1", "source": "C1"},
+    {"id": "X-C2", "source": "C2"},
+    {"id": "X-C3", "source": "C3"},
+    {"id": "X-C4", "source": "C4"},
+    {"id": "X-C5", "source": "C5"},
+    {"id": "X-C6", "source": "C6"},
+    {"id": "X-C7", "source": "C7"},
+    {"id": "X-C8", "source": "C8"},
+    {"id": "X-C9", "source": "C9"}
+  ]
+}

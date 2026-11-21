@@ -1,0 +1,98 @@
+{
+  "version": "v1",
+  "project": "proj-alpha",
+  "authorization": {
+    "audiences": [
+      {
+        "audience": "internal",
+        "purpose": "internal editorial review of the synthetic sample",
+        "authorized_by": "rights-lead-internal",
+        "at": "2026-11-20T09:00:00"
+      },
+      {
+        "audience": "external",
+        "vendor": "vendor-a",
+        "purpose": "external supplier subtitle conformance review",
+        "authorized_by": "rights-lead-external",
+        "at": "2026-11-20T09:05:00"
+      }
+    ]
+  },
+  "quasi_fields": ["location", "job", "date"],
+  "readability": {
+    "max_suppressed_fields": 2,
+    "suppress_cost": 4,
+    "require_retained_field": true
+  },
+  "rows": [
+    {"id": "C1", "scene": "S1", "speaker": "SPK-A", "start": 1.0, "end": 3.0,
+     "text": "艺名：阿岚，邮箱 alan@"},
+    {"id": "C2", "scene": "S1", "speaker": "SPK-A", "start": 3.0, "end": 5.0,
+     "text": "example.com 请回信"},
+    {"id": "C3", "scene": "S1", "speaker": "SPK-B", "start": 5.0, "end": 7.0,
+     "text": "我是小周，今天在徐汇滨江拍摄"},
+    {"id": "C4", "scene": "S2", "speaker": "SPK-C", "start": 8.0, "end": 10.0,
+     "text": "小周也来徐汇滨江了"},
+    {"id": "C5", "scene": "S2", "speaker": "SPK-C", "start": 10.0, "end": 12.0,
+     "text": "他们在徐汇滨江拍夜景"},
+    {"id": "C6", "scene": "S3", "speaker": "SPK-D", "start": 13.0, "end": 15.0,
+     "text": "替身代号“V”是临江的"},
+    {"id": "C7", "scene": "S3", "speaker": "SPK-D", "start": 15.0, "end": 17.0,
+     "text": "临江场地今天开放"},
+    {"id": "C8", "scene": "S4", "speaker": "SPK-E", "start": 18.0, "end": 20.0,
+     "text": "大宁剧院的老陈"},
+    {"id": "C9", "scene": "S4", "speaker": "SPK-F", "start": 20.0, "end": 22.0,
+     "text": "Lily 和林菲也来了"}
+  ],
+  "subjects": [
+    {"id": "A", "persona_names": ["阿岚"], "scenes": ["S1"]},
+    {"id": "B", "persona_names": ["小周"], "scenes": ["S1"]},
+    {"id": "C", "persona_names": ["小周"], "scenes": ["S2"]},
+    {"id": "D", "persona_names": ["老陈"], "scenes": ["S4"]},
+    {"id": "E", "persona_names": ["阿岚"], "scenes": ["S3"]},
+    {"id": "F", "persona_names": ["林菲"], "scenes": ["S4"]}
+  ],
+  "aliases": [
+    {"id": "AL1", "alias": "阿岚", "subject": "A", "scene": "S1",
+     "evidence": {"kind": "signed_consent", "ref": "consent-AL1",
+                  "authorized_by": "rights-lead-internal", "at": "2026-11-19T10:00:00"}},
+    {"id": "AL2", "alias": "V", "subject": "E", "scene": "S3",
+     "evidence": {"kind": "signed_consent", "ref": "consent-AL2",
+                  "authorized_by": "rights-lead-internal", "at": "2026-11-19T10:05:00"}},
+    {"id": "AL3", "alias": "Lily", "subject": "F", "scene": "S4",
+     "evidence": {"kind": "signed_consent", "ref": "consent-AL3",
+                  "authorized_by": "rights-lead-internal", "at": "2026-11-19T10:10:00"}}
+  ],
+  "quasi": [
+    {"subject": "A", "field": "location", "value": "徐汇滨江",
+     "levels": {"0": "徐汇滨江", "1": "徐汇区", "2": "上海市"}},
+    {"subject": "A", "field": "job", "value": "演员",
+     "levels": {"0": "演员", "1": "演员", "2": "演员"}},
+    {"subject": "B", "field": "location", "value": "徐汇区",
+     "levels": {"0": "徐汇区", "1": "徐汇区", "2": "上海市"}},
+    {"subject": "B", "field": "job", "value": "演员",
+     "levels": {"0": "演员", "1": "演员", "2": "演员"}},
+    {"subject": "C", "field": "location", "value": "徐汇区",
+     "levels": {"0": "徐汇区", "1": "徐汇区", "2": "上海市"}},
+    {"subject": "C", "field": "job", "value": "演员",
+     "levels": {"0": "演员", "1": "演员", "2": "演员"}},
+    {"subject": "D", "field": "location", "value": "大宁剧院",
+     "levels": {"0": "大宁剧院", "1": "静安区", "2": "上海市"}},
+    {"subject": "D", "field": "job", "value": "演员",
+     "levels": {"0": "演员", "1": "演员", "2": "演员"}},
+    {"subject": "D", "field": "date", "value": "2026-11-15",
+     "levels": {"0": "2026-11-15", "1": "2026-11", "2": "2026", "3": "2020年代"}},
+    {"subject": "E", "field": "location", "value": "临江",
+     "levels": {"0": "临江", "1": "徐汇区", "2": "上海市"}},
+    {"subject": "E", "field": "job", "value": "演员",
+     "levels": {"0": "演员", "1": "演员", "2": "演员"}},
+    {"subject": "E", "field": "date", "value": "2026-11-15",
+     "levels": {"0": "2026-11-15", "1": "2026-11", "2": "2026", "3": "2020年代"}},
+    {"subject": "F", "field": "location", "value": "徐汇区",
+     "levels": {"0": "徐汇区", "1": "徐汇区", "2": "上海市"}},
+    {"subject": "F", "field": "job", "value": "演员",
+     "levels": {"0": "演员", "1": "演员", "2": "演员"}},
+    {"subject": "F", "field": "date", "value": "2026-11-15",
+     "levels": {"0": "2026-11-15", "1": "2026-11", "2": "2026", "3": "2020年代"}}
+  ]
+}
