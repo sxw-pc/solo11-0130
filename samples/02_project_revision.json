@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "kind": "project_revision",
+  "rows": [
+    {"id": "RV6-REG", "project": "P-REG", "revision": "r6", "editor": "E1", "parent": [], "content_hash": "HASH6"},
+    {"id": "RV7-REG", "project": "P-REG", "revision": "r7", "editor": "E1", "parent": ["r6"], "content_hash": "HASH7"},
+    {"id": "RV6A", "project": "P-MERGE", "revision": "r6a", "editor": "E1", "parent": [], "content_hash": "HASH6A"},
+    {"id": "RV6B", "project": "P-MERGE", "revision": "r6b", "editor": "E3", "parent": [], "content_hash": "HASH6B"},
+    {"id": "RV7-MERGE", "project": "P-MERGE", "revision": "r7", "editor": "E1", "parent": ["r6a", "r6b"], "content_hash": "HASH7M"},
+    {"id": "RV6-DRILL", "project": "P-DRILL", "revision": "r6", "editor": "E1", "parent": [], "content_hash": "HASH6"},
+    {"id": "RV7-DRILL", "project": "P-DRILL", "revision": "r7", "editor": "E1", "parent": ["r6"], "content_hash": "HASH7"}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "rows": [
+    {"id": "CASE-REG", "trace": "TRACE-REG", "reviewer": "audit-zhao",
+     "note": "reviewer 只记录承办人；立案与否由核证结果决定"},
+    {"id": "CASE-MERGE", "trace": "TRACE-MERGE", "reviewer": "audit-zhao"},
+    {"id": "CASE-DRILL", "trace": "TRACE-DRILL", "reviewer": "audit-qian"}
+  ]
+}

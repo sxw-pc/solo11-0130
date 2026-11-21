@@ -1,0 +1,39 @@
+{
+  "version": "v1",
+  "kind": "access_trace",
+  "rows": [
+    {
+      "id": "TRACE-REG",
+      "project": "P-REG",
+      "clock_skew_seconds": 120,
+      "events": [
+        {"id": "g1", "kind": "login", "account": "E1", "device": "D-01", "at": "2026-03-01T08:00:00"},
+        {"id": "g2", "kind": "edit", "account": "E1", "device": "D-01", "at": "2026-03-01T08:30:00", "revision": "r7"},
+        {"id": "g3", "kind": "export", "account": "E1", "device": "D-01", "at": "2026-03-01T10:00:00", "revision": "r7", "content_hash": "HASH7"},
+        {"id": "g4", "kind": "logout", "account": "E1", "device": "D-01", "at": "2026-03-01T10:30:00"}
+      ]
+    },
+    {
+      "id": "TRACE-MERGE",
+      "project": "P-MERGE",
+      "clock_skew_seconds": 120,
+      "events": [
+        {"id": "m1", "kind": "login", "account": "E1", "device": "D-02", "at": "2026-03-01T08:00:00"},
+        {"id": "m2", "kind": "edit", "account": "E1", "device": "D-02", "at": "2026-03-01T08:30:00", "revision": "r7"},
+        {"id": "m3", "kind": "export", "account": "E1", "device": "D-02", "at": "2026-03-01T10:00:00", "revision": "r7", "content_hash": "HASH7M"},
+        {"id": "m4", "kind": "logout", "account": "E1", "device": "D-02", "at": "2026-03-01T10:30:00"}
+      ]
+    },
+    {
+      "id": "TRACE-DRILL",
+      "project": "P-DRILL",
+      "clock_skew_seconds": 120,
+      "events": [
+        {"id": "d1", "kind": "login", "account": "E1", "device": "D-03", "at": "2026-03-01T08:00:00"},
+        {"id": "d2", "kind": "edit", "account": "E1", "device": "D-03", "at": "2026-03-01T08:30:00", "revision": "r7"},
+        {"id": "d3", "kind": "export", "account": "E1", "device": "D-03", "at": "2026-03-01T10:00:00", "revision": "r7", "content_hash": "HASH7"},
+        {"id": "d4", "kind": "logout", "account": "E1", "device": "D-03", "at": "2026-03-01T10:30:00"}
+      ]
+    }
+  ]
+}

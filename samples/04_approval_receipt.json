@@ -1,0 +1,21 @@
+{
+  "version": "v1",
+  "kind": "approval_receipt",
+  "rows": [
+    {"id": "AP-REG-R7", "project": "P-REG", "receipt": "AP-REG-R7",
+     "revision": "r7", "content_hash": "HASH7", "approver": "E2",
+     "at": "2026-03-01T09:10:00",
+     "note": "E2 与 E1 同属自然人甲：账号名不同但不是两个人 -> 自批"},
+    {"id": "AP-OLD-R6", "project": "P-MERGE", "receipt": "AP-OLD-R6",
+     "revision": "r6a", "content_hash": "HASH6A", "approver": "E2",
+     "at": "2026-03-01T09:10:00",
+     "note": "只批准旧分支 r6a，不能沿旧分支签名放行合并版 r7"},
+    {"id": "AP-DRILL-R7", "project": "P-DRILL", "receipt": "AP-DRILL-R7",
+     "revision": "r7", "content_hash": "HASH7", "approver": "E2",
+     "at": "2026-03-01T09:10:00",
+     "note": "演练项目紧急窗口内的自批，等待另一自然人 24 小时内补签"},
+    {"id": "CO-DRILL", "kind": "emergency_cosign", "project": "P-DRILL",
+     "window": "EW-DRILL", "person": "E3", "at": "2026-03-01T22:00:00",
+     "note": "乙在导出 12 小时后补签，窗口内有效"}
+  ]
+}

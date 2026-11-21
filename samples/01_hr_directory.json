@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "kind": "hr_directory",
+  "rows": [
+    {"id": "H1", "account": "E1", "person": "jia", "valid_from": "2026-01-01T00:00:00"},
+    {"id": "H2", "account": "E2", "person": "jia", "valid_from": "2026-01-01T00:00:00"},
+    {"id": "H3", "account": "E3", "person": "yi", "valid_from": "2026-01-01T00:00:00"}
+  ]
+}

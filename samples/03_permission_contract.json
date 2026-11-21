@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "kind": "permission_contract",
+  "rows": [
+    {"id": "CT-REG", "project": "P-REG", "regime": "regulated",
+     "effective_at": "2026-02-01T00:00:00",
+     "rule": "受监管客户项目：编辑者之外的第二名自然人必须批准同一版内容，任何自批均违规"},
+    {"id": "CT-MERGE", "project": "P-MERGE", "regime": "regulated",
+     "effective_at": "2026-02-01T00:00:00", "rule": "同上；合并版必须按合并后内容重新批准"},
+    {"id": "CT-DRILL", "project": "P-DRILL", "regime": "drill",
+     "effective_at": "2026-02-01T00:00:00",
+     "rule": "内部演练项目：值班人员可在事前登记的紧急窗口内自批，须填紧急原因并在 24 小时内由另一自然人补签"}
+  ]
+}

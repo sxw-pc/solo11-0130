@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "kind": "approval_revocation",
+  "rows": [
+    {"id": "RV-DEMO", "project": "P-REG", "receipt": "AP-REG-R7",
+     "at": "2026-03-01T09:40:00", "by": "E2",
+     "reason": "审批人发现版本内容被再次修改，撤回收据；导出在撤销之后 -> 签名无效",
+     "note": "导入本文件后 TRACE-REG 会新增一条确定违规见证 revoked_approval_used"}
+  ]
+}
