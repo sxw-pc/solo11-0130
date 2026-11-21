@@ -1,0 +1,11 @@
+{
+  "disk": "DISK-C",
+  "file_sha256": "f23831deacd03174000003404cbbe62c4a2b0f74f663e22fc6313990e19b5305",
+  "kind": "shard",
+  "length": 290,
+  "project": "STUDIO-PROJECT",
+  "project_version": "v2",
+  "sha256": "6182276fe7829bf12a7ec043606dd90ef2dbf6bb1090b90bb25bb300ce0d049a",
+  "shard_index": 2,
+  "state": "verified"
+}

@@ -1,0 +1,21 @@
+{
+  "version": "req",
+  "rows": [
+    {
+      "id": "RES1",
+      "project": "STUDIO-PROJECT",
+      "out": "samples/run/restored.bin",
+      "purpose": "disaster_recovery",
+      "disks": [
+        {
+          "id": "DISK-A",
+          "path": "samples/run/disk-DISK-A"
+        },
+        {
+          "id": "DISK-B",
+          "path": "samples/run/disk-DISK-B"
+        }
+      ]
+    }
+  ]
+}

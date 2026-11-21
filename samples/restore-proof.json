@@ -1,0 +1,39 @@
+{
+  "corrupt": [],
+  "disks_attached": [
+    "DISK-B",
+    "DISK-C"
+  ],
+  "disks_used": [
+    "DISK-B",
+    "DISK-C"
+  ],
+  "file_sha256": "f23831deacd03174000003404cbbe62c4a2b0f74f663e22fc6313990e19b5305",
+  "notes": [],
+  "out": "samples/run/restored.bin",
+  "project": "STUDIO-PROJECT",
+  "purpose": "disaster_recovery",
+  "rejected": [],
+  "selected_generation": "v2",
+  "shards_rebuilt": [
+    0
+  ],
+  "shards_used": [
+    {
+      "disk": "DISK-A",
+      "index": 0,
+      "source": "rebuilt"
+    },
+    {
+      "disk": "DISK-B",
+      "index": 1,
+      "source": "disk"
+    },
+    {
+      "disk": "DISK-C",
+      "index": 2,
+      "source": "disk"
+    }
+  ],
+  "task_purpose": "disaster_recovery"
+}

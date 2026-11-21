@@ -1,0 +1,26 @@
+{
+  "version": "req",
+  "rows": [
+    {
+      "id": "JOB1",
+      "project": "STUDIO-PROJECT",
+      "project_version": "v2",
+      "purpose": "disaster_recovery",
+      "file": "samples/project-v2.bin",
+      "disks": [
+        {
+          "id": "DISK-A",
+          "path": "samples/run/disk-DISK-A"
+        },
+        {
+          "id": "DISK-B",
+          "path": "samples/run/disk-DISK-B"
+        },
+        {
+          "id": "DISK-C",
+          "path": "samples/run/disk-DISK-C"
+        }
+      ]
+    }
+  ]
+}

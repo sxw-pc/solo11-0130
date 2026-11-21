@@ -1,0 +1,14 @@
+{
+  "disk": "DISK-C",
+  "file_length": 580,
+  "file_sha256": "f23831deacd03174000003404cbbe62c4a2b0f74f663e22fc6313990e19b5305",
+  "kind": "commit",
+  "project": "STUDIO-PROJECT",
+  "project_version": "v2",
+  "shard_sha256": [
+    "788a5da666d254919079e8b94b2987ee191f5a56454a3fe3d51004e6c41278a8",
+    "1d4f510d9cee103b2ad186f4959b17ff2719b9cbe21f9afa4aa66534e98c77c3",
+    "6182276fe7829bf12a7ec043606dd90ef2dbf6bb1090b90bb25bb300ce0d049a"
+  ],
+  "state": "verified"
+}
