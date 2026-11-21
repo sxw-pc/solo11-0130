@@ -1,0 +1,31 @@
+{
+  "version": "v1",
+  "rows": [
+    {
+      "id": "EXEC-FAIL-PAUSE",
+      "suite": "SMOKE-S1",
+      "case": "FAIL-PAUSE",
+      "passed": false,
+      "events": [
+        {"frame_id": "p01", "transition": "open_export", "window_before": "editor_saved",
+         "window_after": "export_progress_dialog", "button_text": "导出",
+         "visible_evidence": "导出进度条出现"},
+        {"frame_id": "p02", "transition": "export_fails", "window_before": "export_progress_dialog",
+         "window_after": "export_failure_dialog", "button_text": "完成",
+         "visible_evidence": "失败错误码 E-503 与重试按钮"}
+      ]
+    },
+    {
+      "id": "EXEC-FAIL-RESUME",
+      "suite": "SMOKE-S1",
+      "case": "FAIL-PAUSE",
+      "resume_execution": "EXEC-FAIL-PAUSE",
+      "passed": true,
+      "events": [
+        {"frame_id": "p03", "transition": "acknowledge_failure",
+         "window_before": "export_failure_dialog", "window_after": "editor_saved",
+         "button_text": "确认", "visible_evidence": "失败弹窗关闭回到草稿"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "version": "v1",
+  "rows": [
+    {
+      "id": "EXEC-OK",
+      "suite": "SMOKE-S1",
+      "case": "SMOKE-CHAIN",
+      "passed": true,
+      "events": [
+        {"frame_id": "f01", "transition": "save_draft", "window_before": "editor_unsaved",
+         "window_after": "editor_saved", "button_text": "保存",
+         "visible_evidence": "草稿已保存提示条"},
+        {"frame_id": "f02", "transition": "open_export", "window_before": "editor_saved",
+         "window_after": "export_progress_dialog", "button_text": "导出",
+         "visible_evidence": "导出进度条出现"},
+        {"frame_id": "f03", "transition": "export_succeeds", "window_before": "export_progress_dialog",
+         "window_after": "editor_saved", "button_text": "完成",
+         "visible_evidence": "导出完成提示与文件路径"},
+        {"frame_id": "f04", "transition": "open_publish", "window_before": "editor_saved",
+         "window_after": "publish_confirm_dialog", "button_text": "发布",
+         "visible_evidence": "发布确认弹窗出现"},
+        {"frame_id": "f05", "transition": "confirm_publish", "window_before": "publish_confirm_dialog",
+         "window_after": "editor_published", "button_text": "确认",
+         "visible_evidence": "发布成功横幅与只读标记"}
+      ]
+    },
+    {
+      "id": "EXEC-NO-CONFIRM",
+      "suite": "SMOKE-S1",
+      "case": "SMOKE-CHAIN",
+      "passed": true,
+      "events": [
+        {"frame_id": "g01", "transition": "save_draft", "window_before": "editor_unsaved",
+         "window_after": "editor_saved", "button_text": "保存",
+         "visible_evidence": "草稿已保存提示条"},
+        {"frame_id": "g02", "transition": "open_export", "window_before": "editor_saved",
+         "window_after": "export_progress_dialog", "button_text": "导出",
+         "visible_evidence": "导出进度条出现"},
+        {"frame_id": "g03", "transition": "export_succeeds", "window_before": "export_progress_dialog",
+         "window_after": "editor_saved", "button_text": "完成",
+         "visible_evidence": "导出完成提示与文件路径"},
+        {"frame_id": "g04", "transition": "open_publish", "window_before": "editor_saved",
+         "window_after": "publish_confirm_dialog", "button_text": "发布",
+         "visible_evidence": "发布确认弹窗出现"},
+        {"frame_id": "g05", "transition": "confirm_publish", "window_before": "editor_saved",
+         "window_after": "editor_published", "button_text": "确认",
+         "visible_evidence": "发布成功横幅与只读标记"}
+      ]
+    },
+    {
+      "id": "EXEC-MISSING-FRAME",
+      "suite": "SMOKE-S1",
+      "case": "SMOKE-CHAIN",
+      "passed": true,
+      "events": [
+        {"frame_id": "h01", "transition": "save_draft", "window_before": "editor_unsaved",
+         "window_after": "editor_saved", "button_text": "保存",
+         "visible_evidence": "草稿已保存提示条"},
+        {"frame_id": "h02", "transition": "open_export", "window_before": "editor_saved",
+         "window_after": "export_progress_dialog", "button_text": "导出",
+         "visible_evidence": "导出进度条出现"},
+        {"frame_id": "h03", "transition": "export_succeeds", "window_before": "export_progress_dialog",
+         "window_after": "editor_saved", "button_text": "完成",
+         "visible_evidence": "导出完成提示与文件路径"},
+        {"frame_id": "h04", "transition": "open_publish", "window_before": "editor_saved",
+         "window_after": "publish_confirm_dialog", "button_text": "发布",
+         "visible_evidence": "发布确认弹窗出现"}
+      ]
+    },
+    {
+      "id": "EXEC-WRONG-EVIDENCE",
+      "suite": "SMOKE-S1",
+      "case": "SMOKE-CHAIN",
+      "passed": true,
+      "events": [
+        {"frame_id": "i01", "transition": "save_draft", "window_before": "editor_unsaved",
+         "window_after": "editor_saved", "button_text": "保存",
+         "visible_evidence": "草稿已保存提示条"},
+        {"frame_id": "i02", "transition": "open_export", "window_before": "editor_saved",
+         "window_after": "export_progress_dialog", "button_text": "导出",
+         "visible_evidence": "导出进度条出现"},
+        {"frame_id": "i03", "transition": "export_succeeds", "window_before": "export_progress_dialog",
+         "window_after": "editor_saved", "button_text": "完成",
+         "visible_evidence": "导出完成提示与文件路径"},
+        {"frame_id": "i04", "transition": "open_publish", "window_before": "editor_saved",
+         "window_after": "publish_confirm_dialog", "button_text": "发布",
+         "visible_evidence": "发布确认弹窗出现"},
+        {"frame_id": "i05", "transition": "confirm_publish", "window_before": "publish_confirm_dialog",
+         "window_after": "editor_published", "button_text": "确认",
+         "visible_evidence": "失败错误码 E-503 与重试按钮"}
+      ]
+    }
+  ]
+}

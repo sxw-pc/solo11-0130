@@ -1,0 +1,273 @@
+{
+  "version": "v1",
+  "suite_id": "AUDIT-A1",
+  "contract": "audit",
+  "limits": {
+    "workspace_copies": 1,
+    "max_total_runtime_s": 120
+  },
+  "graph": {
+    "graph_id": "graph:desktop-export-3state",
+    "states": [
+      {
+        "id": "editor_unsaved",
+        "name": "未保存项目",
+        "modal": false,
+        "terminal": false
+      },
+      {
+        "id": "editor_saved",
+        "name": "已保存草稿",
+        "modal": false,
+        "terminal": false
+      },
+      {
+        "id": "export_progress_dialog",
+        "name": "导出进度弹窗",
+        "modal": true,
+        "terminal": false
+      },
+      {
+        "id": "export_failure_dialog",
+        "name": "导出失败弹窗",
+        "modal": true,
+        "terminal": false
+      },
+      {
+        "id": "publish_confirm_dialog",
+        "name": "发布确认弹窗",
+        "modal": true,
+        "terminal": false
+      },
+      {
+        "id": "editor_published",
+        "name": "已发布终态",
+        "modal": false,
+        "terminal": true
+      }
+    ],
+    "transitions": [
+      {
+        "id": "save_draft",
+        "from_state": "editor_unsaved",
+        "to_state": "editor_saved",
+        "button_text": "保存",
+        "evidence": "草稿已保存提示条",
+        "risk": "high",
+        "mutates": true,
+        "irreversible": false,
+        "runtime_s": 2
+      },
+      {
+        "id": "save_again",
+        "from_state": "editor_saved",
+        "to_state": "editor_saved",
+        "button_text": "保存",
+        "evidence": "草稿已更新提示条",
+        "risk": "low",
+        "mutates": true,
+        "irreversible": false,
+        "runtime_s": 1
+      },
+      {
+        "id": "open_export",
+        "from_state": "editor_saved",
+        "to_state": "export_progress_dialog",
+        "button_text": "导出",
+        "evidence": "导出进度条出现",
+        "risk": "low",
+        "mutates": false,
+        "irreversible": false,
+        "runtime_s": 1
+      },
+      {
+        "id": "cancel_progress",
+        "from_state": "export_progress_dialog",
+        "to_state": "editor_saved",
+        "button_text": "取消",
+        "evidence": "进度弹窗关闭回到草稿",
+        "risk": "low",
+        "mutates": false,
+        "irreversible": false,
+        "runtime_s": 1
+      },
+      {
+        "id": "export_succeeds",
+        "from_state": "export_progress_dialog",
+        "to_state": "editor_saved",
+        "button_text": "完成",
+        "evidence": "导出完成提示与文件路径",
+        "risk": "low",
+        "mutates": true,
+        "irreversible": false,
+        "runtime_s": 4
+      },
+      {
+        "id": "export_fails",
+        "from_state": "export_progress_dialog",
+        "to_state": "export_failure_dialog",
+        "button_text": "完成",
+        "evidence": "失败错误码 E-503 与重试按钮",
+        "risk": "high",
+        "mutates": false,
+        "irreversible": false,
+        "runtime_s": 4
+      },
+      {
+        "id": "acknowledge_failure",
+        "from_state": "export_failure_dialog",
+        "to_state": "editor_saved",
+        "button_text": "确认",
+        "evidence": "失败弹窗关闭回到草稿",
+        "risk": "low",
+        "mutates": false,
+        "irreversible": false,
+        "runtime_s": 1
+      },
+      {
+        "id": "open_publish",
+        "from_state": "editor_saved",
+        "to_state": "publish_confirm_dialog",
+        "button_text": "发布",
+        "evidence": "发布确认弹窗出现",
+        "risk": "low",
+        "mutates": false,
+        "irreversible": false,
+        "runtime_s": 1
+      },
+      {
+        "id": "cancel_publish",
+        "from_state": "publish_confirm_dialog",
+        "to_state": "editor_saved",
+        "button_text": "取消",
+        "evidence": "确认弹窗关闭回到草稿",
+        "risk": "low",
+        "mutates": false,
+        "irreversible": false,
+        "runtime_s": 1
+      },
+      {
+        "id": "confirm_publish",
+        "from_state": "publish_confirm_dialog",
+        "to_state": "editor_published",
+        "button_text": "确认",
+        "evidence": "发布成功横幅与只读标记",
+        "risk": "high",
+        "mutates": true,
+        "irreversible": true,
+        "runtime_s": 3
+      },
+      {
+        "id": "retry_export",
+        "from_state": "export_failure_dialog",
+        "to_state": "export_progress_dialog",
+        "button_text": "重试",
+        "evidence": "进度条重新出现",
+        "risk": "low",
+        "mutates": false,
+        "irreversible": false,
+        "runtime_s": 1
+      },
+      {
+        "id": "retry_then_export",
+        "from_state": "export_failure_dialog",
+        "to_state": "editor_saved",
+        "button_text": "重试并导出",
+        "evidence": "重试后导出完成并回写文件",
+        "risk": "high",
+        "mutates": true,
+        "irreversible": false,
+        "runtime_s": 3
+      }
+    ],
+    "targets": [
+      {
+        "id": "T1",
+        "name": "保存草稿高风险转移",
+        "transition": "save_draft"
+      },
+      {
+        "id": "T2",
+        "name": "不可逆发布高风险转移",
+        "transition": "confirm_publish",
+        "required_modal": "publish_confirm_dialog"
+      },
+      {
+        "id": "T3",
+        "name": "导出失败分支高风险转移",
+        "transition": "export_fails",
+        "required_modal": "export_failure_dialog"
+      }
+    ]
+  },
+  "snapshots": [
+    {
+      "id": "snap-clean",
+      "state": "editor_unsaved",
+      "project": "未保存项目-干净基线",
+      "published": false
+    },
+    {
+      "id": "snap-draft",
+      "state": "editor_saved",
+      "project": "草稿基线",
+      "published": false
+    }
+  ],
+  "workspaces": [
+    {
+      "id": "ws-1",
+      "snapshot": "snap-clean"
+    }
+  ],
+  "cases": [
+    {
+      "id": "PUBLISH-ONLY",
+      "start_snapshot": "snap-draft",
+      "start_snapshot_state": "editor_saved",
+      "coverage_labels": [
+        "T2"
+      ],
+      "steps": [
+        {
+          "transition": "open_publish"
+        },
+        {
+          "transition": "confirm_publish"
+        }
+      ]
+    },
+    {
+      "id": "DRAFT-ONLY",
+      "start_snapshot": "snap-clean",
+      "start_snapshot_state": "editor_unsaved",
+      "coverage_labels": [
+        "T1"
+      ],
+      "steps": [
+        {
+          "transition": "save_draft"
+        }
+      ]
+    },
+    {
+      "id": "FAIL-FULL",
+      "start_snapshot": "snap-draft",
+      "start_snapshot_state": "editor_saved",
+      "coverage_labels": [
+        "T3"
+      ],
+      "steps": [
+        {
+          "transition": "open_export"
+        },
+        {
+          "transition": "export_fails"
+        },
+        {
+          "transition": "retry_then_export"
+        }
+      ]
+    }
+  ]
+}
