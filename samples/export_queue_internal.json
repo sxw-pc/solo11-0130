@@ -1,0 +1,60 @@
+{
+  "version": "v1",
+  "queue_id": "INTERNAL-2026-01-15",
+  "contract": "internal",
+  "start": "2026-01-15T10:00:00",
+  "load_minutes": 0,
+  "license": {
+    "id": "ENC-SHARED",
+    "windows": [
+      {
+        "start": "2026-01-15T10:00:00",
+        "end": "2026-01-15T10:40:00"
+      },
+      {
+        "start": "2026-01-15T11:00:00",
+        "end": "2026-01-15T12:00:00"
+      }
+    ],
+    "occupied": []
+  },
+  "workstations": [
+    {
+      "id": "A",
+      "preloaded": []
+    },
+    {
+      "id": "B",
+      "preloaded": []
+    }
+  ],
+  "rows": [
+    {
+      "id": "J1",
+      "project": "P1",
+      "encode_minutes": 20,
+      "prepare_minutes": 0,
+      "verify_minutes": 0,
+      "target": "2026-01-15T10:30:00",
+      "weight": 1
+    },
+    {
+      "id": "J2",
+      "project": "P2",
+      "encode_minutes": 20,
+      "prepare_minutes": 0,
+      "verify_minutes": 0,
+      "target": "2026-01-15T10:30:00",
+      "weight": 1
+    },
+    {
+      "id": "J3",
+      "project": "P3",
+      "encode_minutes": 20,
+      "prepare_minutes": 0,
+      "verify_minutes": 0,
+      "target": "2026-01-15T10:30:00",
+      "weight": 9
+    }
+  ]
+}

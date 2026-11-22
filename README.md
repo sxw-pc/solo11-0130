@@ -6,4 +6,11 @@
 
 运行：`python -m pip install . --no-deps --no-build-isolation`，`python -m subtitlehandoff demo`，`python -m subtitlehandoff --help`，`python -m pytest -q`。所有演示和测试使用虚构本地文件，不访问网络。
 
-增强素材另有 `export-queue` 和 `export-dispatch` 两个离线入口，分别按单台工作站 FIFO 预计导出时段，以及对照模拟桌面执行完成记录与截止时间。都使用 `--db ledger.db export.json`；可运行样例在 `tests/test_export_queue.py`。
+增强素材另有 `export-queue` 和 `export-dispatch` 两个离线入口，都使用 `--db ledger.db export.json`。旧格式（无 `workstations`/`license`/`contract`）仍按单站 FIFO 预计时段；新格式按合同排程：
+
+- `contract: "live"` 直播交付：硬截止优先，低权重的内部样片宁可不排入；剩余容量再按等候权重分配。
+- `contract: "internal"` 内部整理：全部软截止，优先避免某项目长期饥饿，个别逾期如实标 `逾期`。
+
+规划在双站上并行准备项目、串行独占同一把编码许可，只在切换项目时付装载时间；完成时刻取本地校验结束而非编码结束，校验被挤到截止后不会被标按时。合同在入队前固定，之后换合同报 `contract_locked`。至多八个任务时穷举全部可行顺序，取该目标下的最优；完全并列时按编码序列 job id 字典序稳定选择，输入行序不参与。
+
+`export-dispatch` 采入模拟桌面执行日志，核对实际开工、检查点续跑、许可占用与校验结束；同一许可上重叠的两次编码只有先开工者算完成，无检查点的半成品不能被第二站当作完成，重复导入同一日志不重复占用许可。冻结计划、阶段与许可租约、改派和执行差异落在 `export_plan`/`plan_phase`/`license_lease`/`reassignment`/`execution_diff`/`bottleneck`，`report` 可按任务回读被延后或逾期的瓶颈。可运行样例见 `samples/` 与字段说明 `samples/README.md`，测试见 `tests/test_export_planning.py`。
